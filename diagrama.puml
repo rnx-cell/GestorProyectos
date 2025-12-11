@@ -1,0 +1,30 @@
+@startuml diagrama
+
+    class Proyecto {
+        +Int id
+        +String nombre
+        +String descripcion
+        --
+        +List<Tarea> tareas
+    }
+
+    class Tarea {
+        +Int id
+        +String titulo
+        +String descripcion
+        +TaskStatus estado
+        +Date fecha
+    }
+
+    class TareaEstado {
+        <<enumeration>>
+        SIN_EMPEZAR
+        EN_PROCESO
+        LISTO
+    }
+
+    Proyecto "1" --> "0..*" Tarea
+    Tarea --> TareaEstado
+
+
+@enduml
