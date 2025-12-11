@@ -1,0 +1,52 @@
+.project-card {
+  padding: 16px;
+  border-radius: 14px;
+  margin: 50px;
+  box-shadow: 10px 5px 25px gray;
+}
+
+.title-header {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.styled-table {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.styled-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.styled-table th {
+  background: #eeeeee;
+  font-weight: 600;
+  padding: 12px;
+}
+
+.styled-table td {
+  padding: 10px 8px;
+}
+
+mat-icon {
+  font-size: 20px;
+}
+
+.clickable {
+  cursor: pointer;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}

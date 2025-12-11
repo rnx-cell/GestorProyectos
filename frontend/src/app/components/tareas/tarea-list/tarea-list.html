@@ -1,0 +1,69 @@
+<mat-card class="task-card">
+  <mat-card-title class="title-header">Tareas</mat-card-title>
+  <mat-card-content>
+
+    <div class="header-actions">
+      <button mat-flat-button color="primary" (click)="openCreate()">
+        <mat-icon>add</mat-icon> Nueva tarea
+      </button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="styled-table">
+
+      <!-- ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let t">{{ t.id }}</td>
+      </ng-container>
+
+      <!-- Título -->
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
+        <td mat-cell *matCellDef="let t">{{ t.titulo }}</td>
+      </ng-container>
+
+      <!-- Descripción -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+        <td mat-cell *matCellDef="let t">{{ t.descripcion }}</td>
+      </ng-container>
+
+      <!-- Estado -->
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+        <td mat-cell *matCellDef="let t">{{ estadoLabels[t.estado] || '—' }}</td>
+      </ng-container>
+
+      <!-- Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let t">{{ t.fecha | date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <!-- Proyecto -->
+      <ng-container matColumnDef="proyectoId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Proyecto</th>
+        <td mat-cell *matCellDef="let t" class="clickable" (click)="goToProyecto(t.proyectoId)">{{ t.proyectoId }}</td>
+      </ng-container>
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let t">
+          <button mat-icon-button color="accent" (click)="edit(t)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="delete(t.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,25]" showFirstLastButtons></mat-paginator>
+
+  </mat-card-content>
+</mat-card>

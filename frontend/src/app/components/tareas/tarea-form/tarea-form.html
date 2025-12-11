@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{ data.tarea ? 'Editar Tarea' : 'Nueva Tarea' }}</h2>
+
+
+<mat-dialog-content [formGroup]="form">
+  <!-- titulo -->
+  <mat-form-field appearance="fill" style="width:100%">
+    <mat-label>Titulo</mat-label>
+    <input matInput formControlName="titulo">
+  </mat-form-field>
+
+  <!-- descripcion -->
+  <mat-form-field appearance="fill" style="width:100%">
+    <mat-label>Descripcion</mat-label>
+    <input matInput formControlName="descripcion">
+  </mat-form-field>
+
+  <!-- estado-->
+  <mat-form-field appearance="fill" style="width:100%">
+    <mat-label>Estado</mat-label>
+    <mat-select formControlName="estado">
+      <mat-option *ngFor="let e of estados" [value]="e">
+        {{ estadoLabels[e] }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- fecha -->
+  <mat-form-field>
+    <mat-label>Fecha</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="fecha">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- proyecto -->
+  <mat-form-field appearance="fill" style="width:100%">
+    <mat-label>Proyecto</mat-label>
+    <mat-select formControlName="proyectoId">
+      <mat-option *ngFor="let p of proyectos" [value]="p.id">{{ p.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="save()">Guardar</button>
+</mat-dialog-actions>
